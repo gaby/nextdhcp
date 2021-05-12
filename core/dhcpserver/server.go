@@ -163,6 +163,7 @@ func (s *Server) serveDHCPv4(c net.PacketConn, payload []byte, addr net.Addr) er
 	ctx = lease.WithDatabase(ctx, cfg.Database)
 	ctx = WithPeer(ctx, addr)
 	ctx = log.AddRequestFields(ctx, msg)
+	ctx = WithRequestTimeStamp(ctx)
 
 	err = cfg.chain.ServeDHCP(ctx, msg, resp)
 	if err != nil && err != ErrNoResponse {

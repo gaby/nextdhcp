@@ -108,7 +108,10 @@ func (p *RangePlugin) ServeDHCP(ctx context.Context, req, res *dhcpv4.DHCPv4) er
 	log.With(ctx)
 	db := lease.GetDatabase(ctx)
 	cli := lease.Client{HwAddr: req.ClientHWAddr}
-
+	// dhcp request has already been handled
+	if dhcpserver.Ack(res) || dhcpserver.Nak(res) {
+		return p.Next.ServeDHCP(ctx, req, res)
+	}
 	if dhcpserver.Discover(req) {
 		if p.findAndPrepareResponse(ctx, req, res, req.RequestedIPAddress(), db) {
 			return nil
