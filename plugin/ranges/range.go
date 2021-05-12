@@ -106,6 +106,11 @@ func (p *RangePlugin) findAndPrepareResponse(ctx context.Context, req, res *dhcp
 // ServeDHCP implements the plugin.Handler interface and served DHCP requests
 func (p *RangePlugin) ServeDHCP(ctx context.Context, req, res *dhcpv4.DHCPv4) error {
 	log.With(ctx)
+	// dhcp request has already been handled
+	if dhcpserver.Ack(res) || dhcpserver.Nak(res) {
+		logger.Log.Debugf("request already been handled %s", req.ClientHWAddr, req.ClientIPAddr.String())
+		return p.Next.ServeDHCP(ctx, req, res)
+	}
 	db := lease.GetDatabase(ctx)
 	cli := lease.Client{HwAddr: req.ClientHWAddr}
 
