@@ -107,7 +107,7 @@ func (p *RangePlugin) findAndPrepareResponse(ctx context.Context, req, res *dhcp
 func (p *RangePlugin) ServeDHCP(ctx context.Context, req, res *dhcpv4.DHCPv4) error {
 	log.With(ctx)
 	// dhcp request has already been handled
-	if dhcpserver.Ack(res) || dhcpserver.Nak(res) {
+	if dhcpserver.Ack(res) || dhcpserver.Nak(res) || (dhcpserver.Discover(req) && !res.YourIPAddr.IsUnspecified()) {
 		logger.Log.Debugf("request already been handled %s", req.ClientHWAddr, req.ClientIPAddr.String())
 		return p.Next.ServeDHCP(ctx, req, res)
 	}
