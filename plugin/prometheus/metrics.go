@@ -27,7 +27,7 @@ type Metrics struct {
 	extraLabels    []extraLabel
 	latencyBuckets []float64
 
-	once sync.Once
+	// once sync.Once
 
 	// handler http.Handler
 }
@@ -91,13 +91,12 @@ func (m *Metrics) start() error {
 
 	// http.Handle(m.path, promhttp.InstrumentMetricHandler(prometheus.DefaultRegisterer, m.handler))
 	http.Handle(m.path, promhttp.Handler())
-	go func() {
-		err := http.ListenAndServe(m.addr, nil)
-		if err != nil {
-			logger.Log.Errorf("[ERROR] Starting handler: %v", err)
-		}
-		logger.Log.Infof("listening at:%s, path: %s", m.addr, m.path)
-	}()
+
+	err := http.ListenAndServe(m.addr, nil)
+	if err != nil {
+		logger.Log.Errorf("[ERROR] Starting handler: %v", err)
+	}
+	logger.Log.Infof("listening at:%s, path: %s", m.addr, m.path)
 
 	return nil
 }
