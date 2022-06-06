@@ -6,8 +6,7 @@ require (
 	github.com/Knetic/govaluate v3.0.0+incompatible
 	github.com/apex/log v1.9.0
 	github.com/caddyserver/caddy v1.0.5
-	github.com/eclipse/paho.mqtt.golang v1.3.5
-	github.com/fatih/color v1.8.0 // indirect
+	github.com/eclipse/paho.mqtt.golang v1.4.1
 	github.com/go-openapi/analysis v0.19.7 // indirect
 	github.com/go-openapi/errors v0.19.3 // indirect
 	github.com/go-openapi/runtime v0.19.9 // indirect
@@ -18,12 +17,10 @@ require (
 	github.com/google/gopacket v1.1.19
 	github.com/gotify/go-api-client/v2 v2.0.4
 	github.com/insomniacslk/dhcp v0.0.0-20200102182701-53297fb6d37d
-	github.com/mattn/go-colorable v0.1.4 // indirect
-	github.com/mattn/go-isatty v0.0.14
 	github.com/mdlayher/raw v0.0.0-20191009151244-50f2db8cc065
 	github.com/ppacher/glua-loop v0.0.0-20190823064734-05c43452ea18
 	github.com/ppacher/webthings-mqtt-gateway v0.0.0-20190827095024-c29a6f0aa947
-	github.com/prometheus/client_golang v1.3.0 // indirect
+	github.com/prometheus/client_golang v1.3.0
 	github.com/sirupsen/logrus v1.8.1
 	github.com/stretchr/testify v1.7.1
 	github.com/u-root/u-root v6.0.0+incompatible // indirect
@@ -31,5 +28,6 @@ require (
 	github.com/yuin/gopher-lua v0.0.0-20191220021717-ab39c6098bdb
 	go.etcd.io/bbolt v1.3.6
 	go.mongodb.org/mongo-driver v1.2.0 // indirect
+	golang.org/x/sys v0.0.0-20210630005230-0f9fa26af87c // indirect
 	gopkg.in/yaml.v2 v2.2.7 // indirect
 )
